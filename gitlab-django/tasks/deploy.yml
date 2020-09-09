@@ -26,12 +26,14 @@
     dest: "/project/django2/docker-compose.yml"
     backup: true
     
+- name: message
+  debug:
+    msg: "registry_url is {{ registry_url }}"
 
 - name: deploy app
   docker_compose:
     build: false
     project_src: "/project/django2/"
-    
     nocache: true
 
 
