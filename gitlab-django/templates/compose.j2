@@ -9,6 +9,14 @@ services:
     volumes:
       - "pgdata:{{ db_mountpath }}"
     env_file: .env
+    environment:
+      - DEBUG=true
+      - POSTGRES_PASSWORD=postgrespass
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=less_1_db
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+
 
   web:
     restart: always
