@@ -6,4 +6,4 @@ web_static_mountpath: "/usr/src/static/"
 web_start_command: "/usr/local/bin/gunicorn Blog.wsgi:application -w 2 -b :8000"
 nginx_build_path: "./config/nginx/"
 nginx_ports: "8000:8000"
-registry_url: "${REGISTRY_URL}"
+registry_url: ${REGISTRY_URL}
