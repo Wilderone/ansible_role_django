@@ -26,7 +26,9 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_DB=less_1_db
       - POSTGRES_HOST_AUTH_METHOD=trust
+    CMD: ["python", "manage.py", "migrate"]
     command: "{{ web_start_command }}"
+
     depends_on:
       - db
   nginx:
