@@ -31,7 +31,7 @@
   docker_compose:
     build: false
     project_src: "/project/django2/"
-    state: present
+    
     nocache: true
 
 
