@@ -12,7 +12,7 @@ services:
 
   web:
     restart: always
-    image: "${REGISTRY_URL}"
+    image: {{ registry_url }}
     expose:
       - "{{ web_expose_port }}"
     links:
