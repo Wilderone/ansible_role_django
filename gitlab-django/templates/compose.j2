@@ -8,13 +8,8 @@ services:
       - "{{ db_ports }}"
     volumes:
       - "pgdata:{{ db_mountpath }}"
-    env_file: .env
-    environment:
-      - DEBUG=true
-      - POSTGRES_PASSWORD=postgrespass
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=less_1_db
-      - POSTGRES_HOST_AUTH_METHOD=trust
+ 
+
 
 
 
@@ -28,7 +23,12 @@ services:
     volumes:
       - "web-django:{{ web_django_mountpath }}"
       - "web-static:{{ web_static_mountpath }}"
-    env_file: .env
+    environment:
+      - DEBUG=true
+      - POSTGRES_PASSWORD=postgrespass
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=less_1_db
+      - POSTGRES_HOST_AUTH_METHOD=trust
     command: "{{ web_start_command }}"
     depends_on:
       - db
