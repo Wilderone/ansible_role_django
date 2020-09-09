@@ -12,7 +12,7 @@ services:
 
   web:
     restart: always
-    build: .
+    build: "${REGISTRY_URL}"
     expose:
       - "{{ web_expose_port }}"
     links:
