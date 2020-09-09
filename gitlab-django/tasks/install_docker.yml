@@ -1,0 +1,29 @@
+- name: update apt package
+  apt:
+    update_cache: yes
+    name: ["git", "apt-transport-https", "ca-certificates", "wget", "software-properties-common", "gnupg2", "curl", "python3"]
+    state: latest
+
+
+- name: add key from docker repo
+  apt_key:
+    url: "https://download.docker.com/linux/debian/gpg"
+    state: present
+
+- name: add docker repo 
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/debian {{ansible_distribution_release}} stable"
+    state: present
+ 
+- name: install docker
+  apt:
+    update_cache: yes
+    name: ["docker-ce", "docker-ce-cli", "containerd.io"]
+
+
+- name: download docker-compose
+  when: ansible_default_ipv4["address"] == "10.128.0.11"
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-{{ansible_system}}-{{ansible_userspace_architecture}}"
+    dest: "/usr/local/bin/docker-compose"
+    mode: "0777"

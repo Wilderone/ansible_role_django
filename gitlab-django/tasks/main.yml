@@ -1,0 +1,10 @@
+- name: include_vars
+  include_vars: ../vars_files/gitlab_creds.yml
+
+- name: install docker and compose
+  import_tasks: install_docker.yml
+
+- name: deploy app
+  when: ansible_default_ipv4["address"] == "10.128.0.11"
+  import_tasks: deploy.yml
+

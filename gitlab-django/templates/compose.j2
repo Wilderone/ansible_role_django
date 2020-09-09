@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+  db:
+    restart: always
+    image: postgres:latest
+    ports:
+      - "{{ db_ports }}"
+    volumes:
+      - "pgdata:{{ db_mountpath }}"
+    env_file: .env
+
+  web:
+    restart: always
+    build: .
+    expose:
+      - "{{ web_expose_port }}"
+    links:
+      - db:db
+    volumes:
+      - "web-django:{{ web_django_mountpath }}"
+      - "web-static:{{ web_static_mountpath }}"
+    env_file: .env
+    command: "{{ web_start_command }}"
+    depends_on:
+      - db
+  nginx:
+    restart: always
+    build: /project/django/config/nginx/
+    ports:
+      - "{{ nginx_ports }}"
+    volumes:
+      - web-static:/static
+    links:
+      - web:web
+
+volumes:
+  web-django:
+  web-static:
+  pgdata:

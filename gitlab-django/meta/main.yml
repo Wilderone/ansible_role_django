@@ -1,0 +1,22 @@
+galaxy_info:
+  author: Wilderone
+  description: Ansible role for deploy django-project with gitlab ci
+  company: self
+
+
+  license: free
+
+  min_ansible_version: 2.7
+
+ 
+  #
+  platforms:
+  - name: Debian
+    versions:
+    - all
+   
+
+
+  galaxy_tags: []
+ 
+dependencies: []

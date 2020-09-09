@@ -1,0 +1,13 @@
+all:
+  
+  children:
+    executor:
+      hosts:
+        10.128.0.10:
+    deploy:
+      hosts:
+        10.128.0.11:
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    ansible_user: pr
+    

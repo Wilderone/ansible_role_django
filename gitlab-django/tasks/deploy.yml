@@ -1,0 +1,37 @@
+- name: create direcory
+  file:
+    path: "/project/django2"
+    state: directory
+    owner: pr
+    group: pr
+
+
+
+- name: clone repo
+  git:
+    repo: "git@gitlab.com:Wilderone/juneway_less_1.git"
+    dest: "/project/django2/"
+    force: true
+  become: false
+
+- name: stop previous containers
+  docker_compose:
+    project_src: "/project/django2/"
+    state: absent
+
+
+- name: deploy docker-compose.yml
+  template:
+    src: compose.j2
+    dest: "/project/django2/docker-compose.yml"
+    backup: true
+    
+
+- name: deploy app
+  docker_compose:
+    build: true
+    project_src: "/project/django2/"
+    state: present
+    nocache: true
+
+
