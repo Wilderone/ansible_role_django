@@ -29,7 +29,6 @@
 
 - name: deploy app
   docker_compose:
-   
     project_src: "/project/django2/"
     state: present
     nocache: true
