@@ -10,9 +10,6 @@ services:
       - "pgdata:{{ db_mountpath }}"
  
 
-
-
-
   web:
     restart: always
     image: {{ registry_url }}
